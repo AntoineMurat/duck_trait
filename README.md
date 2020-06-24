@@ -70,7 +70,7 @@ fn main() {
 
 The syntax is:
 
-```
+```rust
 duck_trait!(duck_tait_name, 
     [struct1, struct2, struct3, etc.],
     [field1: field1_type; field2: field2_type; etc.],
