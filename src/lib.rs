@@ -4,33 +4,7 @@ use proc_macros::*;
 
 trace_macros!(true);
 
-struct Chien {
-    weight: u32,
-    name: String,
-}
-
-impl Chien {
-    fn be_noisy(&self) {
-        println!("Wouaf");
-    }
-    fn static_noise() {
-        println!("Static wouaf");
-    }
-}
-
-struct Duck {
-    weight: u32
-}
-
-impl Duck {
-    fn be_noisy(&self) {
-        println!("Quack");
-    }
-    fn static_noise() {
-        println!("Static quack");
-    }
-}
-
+#[macro_export]
 macro_rules! duck_trait {
     ($trait:ident, [$($duck_struct:ident),*]) => {
         duck_trait!($trait, [$($duck_struct),*], []);
@@ -87,73 +61,73 @@ macro_rules! impl_fns {
 }
 
 macro_rules! impl_fn {
-    (fn $fn_name:ident(self) $($return_token:tt)*) => {
-        fn $fn_name(self) $($return_token)* {
+    (fn $fn_name:ident(self) $($return_tokens:tt)*) => {
+        fn $fn_name(self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (fn $fn_name:ident(self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        fn $fn_name(self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (fn $fn_name:ident(self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        fn $fn_name(self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.$fn_name($($arg_name),*)
         }
     };
-    (fn $fn_name:ident(&self) $($return_token:tt)*) => {
-        fn $fn_name(&self) $($return_token)* {
+    (fn $fn_name:ident(&self) $($return_tokens:tt)*) => {
+        fn $fn_name(&self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (fn $fn_name:ident(&self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        fn $fn_name(&self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (fn $fn_name:ident(&self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        fn $fn_name(&self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.$fn_name($($arg_name),*)
         }
     };
-    (fn $fn_name:ident(&mut self) $($return_token:tt)*) => {
-        fn $fn_name(&mut self) $($return_token)* {
+    (fn $fn_name:ident(&mut self) $($return_tokens:tt)*) => {
+        fn $fn_name(&mut self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (fn $fn_name:ident(&mut self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        fn $fn_name(&mut self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (fn $fn_name:ident(&mut self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        fn $fn_name(&mut self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.fn_name($($arg_name),*)
         }
     };
-    (fn $fn_name:ident($($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        fn $fn_name($($arg_name: $($arg_type)*)*) $($return_token)* {
+    (fn $fn_name:ident($($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        fn $fn_name($($arg_name: $($arg_type)*)*) $($return_tokens)* {
             Self::$fn_name($($arg_name),*)
         }
     };
-    (async fn $fn_name:ident(self) $($return_token:tt)*) => {
-        async fn $fn_name(self) $($return_token)* {
+    (async fn $fn_name:ident(self) $($return_tokens:tt)*) => {
+        async fn $fn_name(self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (async fn $fn_name:ident(self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        async fn $fn_name(self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (async fn $fn_name:ident(self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        async fn $fn_name(self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.$fn_name($($arg_name),*)
         }
     };
-    (async fn $fn_name:ident(&self) $($return_token:tt)*) => {
-        async fn $fn_name(&self) $($return_token)* {
+    (async fn $fn_name:ident(&self) $($return_tokens:tt)*) => {
+        async fn $fn_name(&self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (async fn $fn_name:ident(&self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        async fn $fn_name(&self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (async fn $fn_name:ident(&self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        async fn $fn_name(&self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.$fn_name($($arg_name),*)
         }
     };
-    (async fn $fn_name:ident(&mut self) $($return_token:tt)*) => {
-        fn $fn_name(&mut self) $($return_token)* {
+    (async fn $fn_name:ident(&mut self) $($return_tokens:tt)*) => {
+        fn $fn_name(&mut self) $($return_tokens)* {
             self.$fn_name()
         }
     };
-    (async fn $fn_name:ident(&mut self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        fn $fn_name(&mut self, $($arg_name: $($arg_type)*)*) $($return_token)* {
+    (async fn $fn_name:ident(&mut self, $($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        fn $fn_name(&mut self, $($arg_name: $($arg_type)*)*) $($return_tokens)* {
             self.fn_name($($arg_name),*)
         }
     };
-    (async fn $fn_name:ident($($arg_name:tt : $($arg_type:tt)*),*) $($return_token:tt)*) => {
-        async fn $fn_name($($arg_name: $($arg_type)*)*) $($return_token)* {
+    (async fn $fn_name:ident($($arg_name:tt : $($arg_type:tt)*),*) $($return_tokens:tt)*) => {
+        async fn $fn_name($($arg_name: $($arg_type)*)*) $($return_tokens)* {
             Self::$fn_name($($arg_name),*)
         }
     };
@@ -171,16 +145,82 @@ macro_rules! impl_fields {
 }
 
 
-fn main() {
-    let mut duck = Duck { weight: 4 };
-    let mut dog = Chien { weight: 2, name: "".to_string() };
+#[test]
+fn generic_trait() {
+    struct Dog {
+        weight: u32,
+        _name: String,
+    }
 
-    duck_trait!(Animal, [Chien, Duck], [weight: u32;], [fn static_noise(); fn be_noisy(&self);]);
+    impl Dog {
+        fn be_noisy(&self) {
+            println!("Wouaf");
+        }
+        fn static_noise() {
+            println!("Static wouaf");
+        }
+    }
+
+    struct Duck {
+        weight: u32
+    }
+
+    impl Duck {
+        fn be_noisy(&self) {
+            println!("Quack");
+        }
+        fn static_noise() {
+            println!("Static quack");
+        }
+    }
+
+    let mut duck = Duck { weight: 4 };
+    let mut dog = Dog { weight: 2, _name: "".to_string() };
+
+    duck_trait!(Animal, [Dog, Duck], [weight: u32;], [fn static_noise(); fn be_noisy(&self);]);
 
     fn measure_weight_twice<T: Animal>(animal: &mut T) -> u32 {
         *animal.weight_mut() *= 2;
         animal.be_noisy();
         T::static_noise();
+        *animal.weight()
+    }
+
+    assert_eq!(measure_weight_twice(&mut duck), 8);
+    assert_eq!(measure_weight_twice(&mut dog), 4);
+}
+
+#[test]
+fn trait_object() {
+    struct Dog {
+        weight: u32,
+        _name: String,
+    }
+
+    impl Dog {
+        fn be_noisy(&self) {
+            println!("Wouaf");
+        }
+    }
+
+    struct Duck {
+        weight: u32
+    }
+
+    impl Duck {
+        fn be_noisy(&self) {
+            println!("Quack");
+        }
+    }
+
+    let mut duck = Duck { weight: 4 };
+    let mut dog = Dog { weight: 2, _name: "".to_string() };
+
+    duck_trait!(Animal, [Dog, Duck], [weight: u32;], [fn be_noisy(&self);]);
+
+    fn measure_weight_twice(animal: &mut dyn Animal) -> u32 {
+        *animal.weight_mut() *= 2;
+        animal.be_noisy();
         *animal.weight()
     }
 

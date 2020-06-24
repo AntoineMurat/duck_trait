@@ -1,0 +1,13 @@
+[package]
+name = "duck_trait"
+version = "0.1.0"
+authors = ["Antoine Murat <antoine.murat@protonmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+
+[dependencies]
+paste = "0.1"
+proc_macros = { path = "proc_macros" }
