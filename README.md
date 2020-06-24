@@ -105,5 +105,5 @@ fn measure_weight_twice(animal: &mut dyn Animal) -> u32 {
 
 ## What doesn't work
 
-Function parameters should not involve pattern matching as every function
-parameter is expected to follow the pattern $arg:ident: $type:ty.
+Function parameters should not involve pattern matching as function
+parameters are expected to follow the pattern ```$($arg_name:tt : $($arg_type:tt)*),*```.
